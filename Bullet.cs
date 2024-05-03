@@ -2,49 +2,64 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Goldmetal.UndeadSurvivor
+
+public class Bullet : MonoBehaviour
 {
-    public class Bullet : MonoBehaviour
+    public float damage;
+    // public int per;
+    public float speed;
+    public float lifeTime;
+
+    Rigidbody2D rigid;
+
+    void Awake()
     {
-        public float damage;
-        public int per;
+        rigid = GetComponent<Rigidbody2D>();
+    }
 
-        Rigidbody2D rigid;
+    public void Init(float damage, Vector3 dir) //int per 임시 삭제
+    {
+        this.damage = damage;
+        // this.per = per;
 
-        void Awake()
-        {
-            rigid = GetComponent<Rigidbody2D>();
-        }
+        // if (per >= 0) {
+        //     rigid.velocity = dir * 15f;
+        // }
+    }
 
-        public void Init(float damage, int per, Vector3 dir)
-        {
-            this.damage = damage;
-            this.per = per;
+    void Start() 
+    {
+        Destroy(gameObject, lifeTime);
+    }
 
-            if (per >= 0) {
-                rigid.velocity = dir * 15f;
-            }
-        }
+    void Update()
+    {
+        transform.Translate(Vector2.up * speed * Time.deltaTime);
+    }
 
-        void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (!collision.CompareTag("Enemy") || per == -100)
-                return;
+    // void OnTriggerEnter2D(Collider2D collision)
+    // {
+    //     if (!collision.CompareTag("Enemy") || per == -100)
+    //         return;
 
-            per--;
+    //     per--;
 
-            if (per < 0) {
-                rigid.velocity = Vector2.zero;
-                gameObject.SetActive(false);
-            }
-        }
+    //     if (per < 0) {
+    //         rigid.velocity = Vector2.zero;
+    //         gameObject.SetActive(false);
+    //     }
+    // }
 
-        void OnTriggerExit2D(Collider2D collision)
-        {
-            if (!collision.CompareTag("Area") || per == -100)
-                return;
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        // if (!collision.CompareTag("Area") || per == -100)
+        //     return;
 
-            gameObject.SetActive(false);
-        }
+        // gameObject.SetActive(false);
+        if (!collision.CompareTag("Area"))
+            return;
+
+        gameObject.SetActive(false);
     }
 }
+
