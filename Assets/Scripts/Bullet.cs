@@ -55,10 +55,7 @@ public class Bullet : MonoBehaviour
             // 적에게 데미지를 주는 로직이 필요하면 여기에 추가
         }
 
-        // 불릿이 맞출 수 있는 횟수 감소
-       
 
-        // 불릿이 더 이상 맞출 수 없으면 비활성화
         if (per < 0)
         {
             gameObject.SetActive(false);
