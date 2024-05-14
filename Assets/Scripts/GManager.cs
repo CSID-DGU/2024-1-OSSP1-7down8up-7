@@ -4,19 +4,27 @@ using UnityEngine;
 
 public class GManager : MonoBehaviour
 {
-    private int iKills;
-    private int iKillsToGetItem;
-    private int iItemPoolSize;
+    private int iKills;  //킬수
+    private int iKillsToGetItem;  //아이템 얻기 위해 충족해야 하는 킬 수
+    private int iItemPoolSize;  //아이템 풀 사이즈
 
-    public Vector2 ItemPosition;
+    private Vector3 ItemPosition;
 
+    private Dictionary<TestItem.ItemType, Queue<GameObject>> itemPools;
 
     void Start()
     {
         iKillsToGetItem = 3;
         iKills = 0;
-        iItemPoolSize = 3; // 원하는 풀 크기 설정
-        ItemPosition=new Vector2(0,0);
+        iItemPoolSize = 4; // 원하는 풀 크기 설정
+        ItemPosition = new Vector3(0, 0,0);
+
+        itemPools = new Dictionary<TestItem.ItemType, Queue<GameObject>>()
+        {
+            { TestItem.ItemType.normal, new Queue<GameObject>() },
+            { TestItem.ItemType.rare, new Queue<GameObject>() },
+            { TestItem.ItemType.unique, new Queue<GameObject>() }
+        };
 
         // Resources 폴더 내 모든 프리팹 로드
         GameObject[] allItems = Resources.LoadAll<GameObject>("Prefabs/Items");
@@ -25,49 +33,97 @@ public class GManager : MonoBehaviour
         InitializePoolRandomly(allItems, iItemPoolSize);
     }
 
+    void Update()
+    {
+    }
+
     void InitializePoolRandomly(GameObject[] allItems, int poolSize)
     {
-        ObjectPool.SharedInstance.pooledObjects = new List<GameObject>();
+        foreach (var pool in itemPools.Values)
+        {
+            pool.Clear();
+        }
+
         for (int i = 0; i < poolSize; i++)
         {
             if (allItems.Length > 0)
             {
                 GameObject itemToPool = allItems[Random.Range(0, allItems.Length)];
-                GameObject item = Instantiate(itemToPool);
-                item.SetActive(false);
-                ObjectPool.SharedInstance.pooledObjects.Add(item);
-                Debug.Log(item.name);
+                TestItem testItem = itemToPool.GetComponent<TestItem>();
+                if (testItem != null)
+                {
+                    GameObject item = Instantiate(itemToPool);
+                   
+                    item.SetActive(false);
+                    itemPools[testItem.type].Enqueue(item);
+                    Debug.Log(item.name);
+                }
             }
         }
     }
 
-    void Update()
-    {
-    }
+  
 
     public void KillsPlusOne()
     {
-        Debug.Log("킬수 +1");
         iKills += 1;
     }
-
     public bool isEqualKills()
     {
-        if (iKills == iKillsToGetItem)
-            return true;
-        else
-           return false;
+        return iKills == iKillsToGetItem;
     }
+    
+    
+    public void SetItemPosition(Vector3 position)
+    {
+        ItemPosition=position;
 
+    }
+    public Vector3 GetItemPosition()
+    {
+        return ItemPosition;
+    }
+   
     public void SpawnItem()
     {
-        Debug.Log("킬수 달성");
-        GameObject item = ObjectPool.SharedInstance.GetPooledObject();
-        if (item != null)
+        
+
+        // 60% 확률로 normal, 30% 확률로 rare, 10% 확률로 unique 아이템 생성
+        float randomValue = Random.Range(0f, 1f);
+        TestItem.ItemType selectedType;
+
+        if (randomValue < 0.6f)
         {
-            item.SetActive(true);
-            iKills = 0; // 킬 수 초기화
-            iKillsToGetItem = iKillsToGetItem + 3;
+            selectedType = TestItem.ItemType.normal;
+            Debug.Log("normal");
         }
+        else if (randomValue < 0.9f)
+        {
+            selectedType = TestItem.ItemType.rare;
+            Debug.Log("rare");
+        }
+        else
+        {
+            selectedType = TestItem.ItemType.unique;
+            Debug.Log("unique");
+        }
+
+        Queue<GameObject> selectedPool = itemPools[selectedType];
+
+        if (selectedPool.Count > 0)
+        {
+            iKills = 0; // 킬 수 초기화
+            GameObject item = selectedPool.Dequeue();
+            item.transform.position=ItemPosition;
+            item.SetActive(true);
+           
+            iKillsToGetItem+=3; //아이템 얻기 위한 킬수 증가: 난이도 조절용임
+        }
+    }
+
+    public void ReturnItemToPool(GameObject item, TestItem.ItemType type)
+    {
+        item.SetActive(false);
+        itemPools[type].Enqueue(item);
     }
 }

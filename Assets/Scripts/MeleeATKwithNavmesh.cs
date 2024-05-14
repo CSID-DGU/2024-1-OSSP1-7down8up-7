@@ -12,7 +12,7 @@ public class MeleeATKwithNavmesh : MonoBehaviour
     public CircleCollider2D circleCollider;
     NavMeshAgent agent;
     public GameObject player;
-    public GameObject GManager;
+  
     public bool isFoundAlan = false;
 
     Vector3 destPosition;
@@ -34,7 +34,7 @@ public class MeleeATKwithNavmesh : MonoBehaviour
 
         circleCollider = GetComponent<CircleCollider2D>();
         player = GameObject.FindGameObjectWithTag("Player");
-        GManager = GameObject.Find("GManager");
+      
         
         StartCoroutine(WanderRoutine());
     }
@@ -143,18 +143,30 @@ public class MeleeATKwithNavmesh : MonoBehaviour
             Dead();
         }
 
-        void Dead()
+       
+
+
+    }
+    void Dead()
+    {
+        
+
+        GManager gManager = GameObject.Find("GManager").GetComponent<GManager>();
+        if (gManager == null)
         {
-            GManager.GetComponent<GManager>().KillsPlusOne();
-            if (GManager.GetComponent<GManager>().isEqualKills())
-            {
-                GManager.GetComponent<GManager>().ItemPosition = transform.position;
-                Debug.Log(GManager.GetComponent<GManager>().ItemPosition);
-                GManager.GetComponent<GManager>().SpawnItem();
-            }
-            gameObject.SetActive(false);
-         
+            return;
         }
+
+        gManager.KillsPlusOne();
+
+        if (gManager.isEqualKills())
+        {
+            
+            gManager.SetItemPosition(transform.position);
+            gManager.SpawnItem();
+        }
+
+        gameObject.SetActive(false);
     }
 }
 

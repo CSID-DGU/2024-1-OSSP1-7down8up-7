@@ -9,7 +9,6 @@ public class TestItem : MonoBehaviour
         normal,
         rare,
         unique
-
     }
     public ItemType type;
     Rigidbody2D rb2D;
@@ -21,8 +20,7 @@ public class TestItem : MonoBehaviour
         /////////////////죽은 몬스터 위치에 생성//////////////////////
         GManager = GameObject.Find("GManager");
         rb2D = GetComponent<Rigidbody2D>();
-       
-        rb2D.position = GManager.GetComponent<GManager>().ItemPosition;
+        
         ///////////////생성 코드 끝//////////////////////////////
     }
     public void Activate()
