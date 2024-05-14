@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public int kill;  //현재 킬수
+    public int killsToGetItem = 15;  //아이템 얻기 위한 킬 수
+
     [SerializeField] // unity에서 값 변경 가능
     private float moveSpeed; // 플레이어 이동 속도
     [SerializeField]

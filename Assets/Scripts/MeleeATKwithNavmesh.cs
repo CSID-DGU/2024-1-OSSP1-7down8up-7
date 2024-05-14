@@ -1,3 +1,4 @@
+using NavMeshPlus.Components;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,7 @@ public class MeleeATKwithNavmesh : MonoBehaviour
     public CircleCollider2D circleCollider;
     NavMeshAgent agent;
     public GameObject player;
-
+    public GameObject GManager;
     public bool isFoundAlan = false;
 
     Vector3 destPosition;
@@ -22,8 +23,6 @@ public class MeleeATKwithNavmesh : MonoBehaviour
     public RuntimeAnimatorController[] animCon;
     SpriteRenderer spriter;
     bool isLive = true;
-
-
     public float detectionRange = 5f; // 플레이어 감지 범위
     void Start()
     {
@@ -35,6 +34,8 @@ public class MeleeATKwithNavmesh : MonoBehaviour
 
         circleCollider = GetComponent<CircleCollider2D>();
         player = GameObject.FindGameObjectWithTag("Player");
+        GManager = GameObject.Find("GManager");
+        
         StartCoroutine(WanderRoutine());
     }
 
@@ -130,7 +131,7 @@ public class MeleeATKwithNavmesh : MonoBehaviour
             return;
 
         health -= collision.GetComponent<Bullet>().damage; //Bullet 스크립트 컴포넌트에서 damage를 가져와서 체력에서 깍는다.
-        Debug.Log("저격 성공 ! ");
+        //Debug.Log("저격 성공 ! ");
 
         if (health > 0)
         {
@@ -140,13 +141,19 @@ public class MeleeATKwithNavmesh : MonoBehaviour
         {
             // .. 체력이 0보다 작음 -> Die 
             Dead();
-            //GameManager.instance.kill++;
-            //GameManager.instance.GetExp();
         }
 
         void Dead()
         {
+            GManager.GetComponent<GManager>().KillsPlusOne();
+            if (GManager.GetComponent<GManager>().isEqualKills())
+            {
+                GManager.GetComponent<GManager>().ItemPosition = transform.position;
+                Debug.Log(GManager.GetComponent<GManager>().ItemPosition);
+                GManager.GetComponent<GManager>().SpawnItem();
+            }
             gameObject.SetActive(false);
+         
         }
     }
 }

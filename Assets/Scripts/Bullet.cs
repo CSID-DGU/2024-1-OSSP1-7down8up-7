@@ -40,17 +40,17 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Hit something: " + collision.gameObject.name);
+        //Debug.Log("Hit something: " + collision.gameObject.name);
 
         // "Wall"이나 "Obstacles" 태그가 있는 오브젝트와 충돌 처리
         if (collision.CompareTag("Wall") || collision.CompareTag("Obstacles"))
         {
-            Debug.Log("Hit a wall");
+            //Debug.Log("Hit a wall");
             gameObject.SetActive(false);
         }
         else if (collision.CompareTag("Enemy"))
         {
-            Debug.Log("Hit an enemy");
+            //Debug.Log("Hit an enemy");
             per--;
             // 적에게 데미지를 주는 로직이 필요하면 여기에 추가
         }
