@@ -1,0 +1,20 @@
+{
+  "monsterData": [
+    {
+      "ID": "0",
+      "Type": "0",
+      "MaxHP": "2",
+      "Speed": "2",
+      "Power": "1",
+      "MonsterPrefabPath": "Prefabs/Monsters/Monster0"
+    },
+    {
+      "ID": "1",
+      "Type": "1",
+      "MaxHP": "3",
+      "Speed": "1",
+      "Power": "2",
+      "MonsterPrefabPath": "Prefabs/Monsters/Monster1"
+    }
+  ]
+}
