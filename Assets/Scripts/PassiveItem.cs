@@ -48,7 +48,20 @@ public class PassiveItem : MonoBehaviour
 
         while (elapsedTime < blinkDuration)
         {
-            spriteRenderer.color = Color.yellow;
+            switch (type) {
+                case Rarity.normal:
+                    spriteRenderer.color = Color.grey;
+                    break;
+                case Rarity.rare:
+                    spriteRenderer.color = Color.yellow;
+                    break;
+                case Rarity.unique:
+                    spriteRenderer.color = Color.magenta;
+                    break;
+
+            }
+
+            
             yield return new WaitForSeconds(blinkInterval);
             spriteRenderer.color = originalColor;
             yield return new WaitForSeconds(blinkInterval);
