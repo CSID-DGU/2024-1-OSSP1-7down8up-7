@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4282279551746452723}
   - component: {fileID: 1888293915735304978}
   - component: {fileID: 1792676096600492338}
+  - component: {fileID: -4875202522978741583}
+  - component: {fileID: 7229436414487528141}
   m_Layer: 0
   m_Name: sleepingEyeMask
   m_TagString: PItem
@@ -126,5 +128,60 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  player: {fileID: 0}
   GManager: {fileID: 0}
+--- !u!114 &-4875202522978741583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4764639238719992263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9acc5165fbc7784295b57a878b3468b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAlive: 1
+  fMoveSpeed: 10
+  fMaxHP: 0
+  fDamage: 0
+  fBulletSpeed: 0
+  fBulletLifeTime: 0
+  fCurrentHP: 0
+  timeBetweenShots: 0
+  ItemType: 0
+--- !u!58 &7229436414487528141
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4764639238719992263}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.4575

@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
     public int kill;
     public int killsToGetItem=20;
     [Header("# Game Object")]
-    public PoolManager pool;
     public Player player;
     // public LevelUp uiLevelUp;
     // public Result uiResult;
@@ -34,6 +33,7 @@ public class GameManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
         Application.targetFrameRate = 60;
+        GameStart(1);
     }
 
     public void GameStart(int id)

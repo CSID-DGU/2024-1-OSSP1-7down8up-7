@@ -16,7 +16,7 @@ public class MeleeATKwithNavmesh : MonoBehaviour
     public bool isFoundAlan = false;
 
     Vector3 destPosition;
-    public float damage;         //공격력
+    public float damage=10;         //공격력
     public float speed;         //속도
     public float health;        //체력
     public float maxHealth;     //최대 체력
@@ -127,6 +127,9 @@ public class MeleeATKwithNavmesh : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.CompareTag("Player"))
+            
+        
         if (!collision.CompareTag("Bullet")) // 충돌한 collision이 Bullet인지를 먼저 확인
             return;
 
@@ -149,24 +152,21 @@ public class MeleeATKwithNavmesh : MonoBehaviour
     }
     void Dead()
     {
-        
-
         GManager gManager = GameObject.Find("GManager").GetComponent<GManager>();
         if (gManager == null)
         {
             return;
         }
-
         gManager.KillsPlusOne();
-
         if (gManager.isEqualKills())
         {
             
             gManager.SetItemPosition(transform.position);
             gManager.SpawnItem();
-        }
 
+        }
         gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }
 

@@ -10,7 +10,7 @@ public class GManager : MonoBehaviour
 
     private Vector3 ItemPosition;
 
-    private Dictionary<TestItem.ItemType, Queue<GameObject>> itemPools;
+    private Dictionary<PassiveItem.Rarity, Queue<GameObject>> itemPools;
 
     void Start()
     {
@@ -19,11 +19,11 @@ public class GManager : MonoBehaviour
         iItemPoolSize = 4; // 원하는 풀 크기 설정
         ItemPosition = new Vector3(0, 0,0);
 
-        itemPools = new Dictionary<TestItem.ItemType, Queue<GameObject>>()
+        itemPools = new Dictionary<PassiveItem.Rarity, Queue<GameObject>>()
         {
-            { TestItem.ItemType.normal, new Queue<GameObject>() },
-            { TestItem.ItemType.rare, new Queue<GameObject>() },
-            { TestItem.ItemType.unique, new Queue<GameObject>() }
+            { PassiveItem.Rarity.normal, new Queue<GameObject>() },
+            { PassiveItem.Rarity.rare, new Queue<GameObject>() },
+            { PassiveItem.Rarity    .unique, new Queue<GameObject>() }
         };
 
         // Resources 폴더 내 모든 프리팹 로드
@@ -49,7 +49,7 @@ public class GManager : MonoBehaviour
             if (allItems.Length > 0)
             {
                 GameObject itemToPool = allItems[Random.Range(0, allItems.Length)];
-                TestItem testItem = itemToPool.GetComponent<TestItem>();
+                PassiveItem testItem = itemToPool.GetComponent<PassiveItem>();
                 if (testItem != null)
                 {
                     GameObject item = Instantiate(itemToPool);
@@ -90,22 +90,19 @@ public class GManager : MonoBehaviour
 
         // 60% 확률로 normal, 30% 확률로 rare, 10% 확률로 unique 아이템 생성
         float randomValue = Random.Range(0f, 1f);
-        TestItem.ItemType selectedType;
+        PassiveItem.Rarity selectedType;
 
         if (randomValue < 0.6f)
         {
-            selectedType = TestItem.ItemType.normal;
-            Debug.Log("normal");
+            selectedType = PassiveItem.Rarity.normal;
         }
         else if (randomValue < 0.9f)
         {
-            selectedType = TestItem.ItemType.rare;
-            Debug.Log("rare");
+            selectedType = PassiveItem.Rarity.rare;
         }
         else
         {
-            selectedType = TestItem.ItemType.unique;
-            Debug.Log("unique");
+            selectedType = PassiveItem.Rarity.unique;      
         }
 
         Queue<GameObject> selectedPool = itemPools[selectedType];
@@ -121,9 +118,9 @@ public class GManager : MonoBehaviour
         }
     }
 
-    public void ReturnItemToPool(GameObject item, TestItem.ItemType type)
+    public void ReturnItemToPool(GameObject item, PassiveItem.Rarity type)
     {
-        item.SetActive(false);
+        item.SetActive(false);  
         itemPools[type].Enqueue(item);
     }
 }

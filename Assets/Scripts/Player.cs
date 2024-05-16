@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    public int kill;  //현재 킬수
-    public int killsToGetItem = 15;  //아이템 얻기 위한 킬 수
 
     [SerializeField] // unity에서 값 변경 가능
     private float moveSpeed; // 플레이어 이동 속도
@@ -15,7 +13,7 @@ public class Player : MonoBehaviour
     private InputActionReference attack, pointerPosition; // input action
     private Vector2 pointerInput; // 마우스포인터 위치
     private WeaponParent weaponParent;
-    
+    private PlayerStat PlayerStat;
     Animator anim; // 플레이어 움직임 애니메이션
 
     Rigidbody2D rb;
@@ -23,14 +21,17 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
+       
         anim = GetComponent<Animator>();
         weaponParent = GetComponentInChildren<WeaponParent>();
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
+        PlayerStat = GetComponent<PlayerStat>();
     }
 
     void Update()
     {
+        moveSpeed=PlayerStat.GetMoveSpeed();
         pointerInput = GetPointerInput();
         weaponParent.PointerPosition = pointerInput;
         float inputX = Input.GetAxisRaw("Horizontal"); // 수평이동
@@ -59,35 +60,22 @@ private Vector2 GetPointerInput()
         mousePos.z = Camera.main.nearClipPlane;
         return Camera.main.ScreenToWorldPoint(mousePos);
     }
-
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy")) // 근거리 몬스터와 접촉했을 때
+        if (collision.CompareTag("PItem"))
         {
-            GameManager.instance.health -= collision.GetComponent<MeleeATKwithNavmesh>().damage;
-            Debug.Log("몬스터와 접촉 ! " + GameManager.instance.health);
+            Debug.Log("아이템!");
+            GameObject Pitem = collision.gameObject;
+            PassiveItem Activate=Pitem.GetComponent<PassiveItem>();
+            Activate.Activate();
+            Pitem.SetActive(false); //지금은 SetActive False로 해두었는데 나중에 UI로 이동시키는 방법 찾아보면 될 듯해요
         }
-        // door_check 변수가 위치 기반으로 되어 있는데 door object에 collider 감지되면 TRUE로 바뀌도록
-
-        /*
-         * if (GameManager.instance.health > 0)
-        {
-            // .. 아직 살아있음 -> Hit Action 
-        }
-        else
-        {
-            // .. 체력이 0보다 작음 -> Die 
-            Dead();
-            GameManager.instance.kill++;
-            GameManager.instance.GetExp();
-        }
-         */
-
     }
 
     void Dead()
     {
-        GameManager.instance.GameOver();
+        Debug.Log("Dead");
+        //GameManager.instance.GameOver();
     }
 }
 

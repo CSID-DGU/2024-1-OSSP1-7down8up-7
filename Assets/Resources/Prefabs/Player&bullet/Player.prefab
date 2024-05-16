@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 6518126844627790260}
   - component: {fileID: 4477919989423955766}
   - component: {fileID: 3203685016080350527}
+  - component: {fileID: 126944322142032081}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -176,7 +177,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 638660443, guid: 2c21c1ba46d0a02479160a6bd7965856, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -266,7 +267,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 0.51171875
+  m_Mass: 0.70361763
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -313,7 +314,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.009262055, y: 0.20222043}
+  m_Offset: {x: 0.0028994083, y: 0.20646225}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -324,8 +325,28 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6117775, y: 1.0374987}
+  m_Size: {x: 0.6414695, y: 1.096884}
   m_EdgeRadius: 0
+--- !u!114 &126944322142032081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1342518422277820384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53ed9e7e44d5a3e4a8d5ce31f8649657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAlive: 1
+  fMoveSpeed: 0
+  fMaxHP: 0
+  fDamage: 0
+  fBulletSpeed: 0
+  fBulletLifeTime: 0
+  fCurrentHP: 0
+  timeBetweenShots: 0
 --- !u!1 &3099427141822152713
 GameObject:
   m_ObjectHideFlags: 0

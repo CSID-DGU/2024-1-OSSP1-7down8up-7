@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7740664646063829728}
-  - component: {fileID: 2120544687439653197}
+  - component: {fileID: 8665498467017374564}
   - component: {fileID: 8115667496223834192}
+  - component: {fileID: 1575856583657803440}
   m_Layer: 0
   m_Name: NavMesh
   m_TagString: Untagged
@@ -33,7 +34,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!114 &2120544687439653197
+--- !u!114 &8665498467017374564
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -78,4 +79,17 @@ MonoBehaviour:
   m_VoxelSize: 0.13333334
   m_BuildHeightMesh: 0
   m_HideEditorLogs: 0
-  m_NavMeshData: {fileID: 23800000, guid: 9fe930b8e3c4e3b4cb6986f89d8cbd43, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 225f61d6565699b4985190ef2ddf10a0, type: 2}
+--- !u!114 &1575856583657803440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4828022306196985333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6aa902f07405c34cabfc2cafa5ea641, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Surface2D: {fileID: 0}

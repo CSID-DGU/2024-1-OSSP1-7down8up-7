@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8474526458645403226}
   m_Layer: 0
   m_Name: exMonster_Melee
-  m_TagString: Enemy
+  m_TagString: MeleeMonster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -193,4 +193,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.008482099, y: 0}
   serializedVersion: 2
-  m_Radius: 0.3642857
+  m_Radius: 0.7
