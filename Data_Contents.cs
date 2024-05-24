@@ -18,6 +18,11 @@ public class Stat
     public float AttackDistance;
     public float DetectionDistance;
     public bool IsAttackin;
+
+    public float fMoveSpeed;
+    public float fBulletSpeed;
+    public float fBulletLifeTime;
+    public float timeBetweenShots;
 }
 
 [Serializable]

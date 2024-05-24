@@ -1,0 +1,65 @@
+{
+  "monsterData": [
+    {
+      "ID": "0",
+      "MonsterName": "spagetticode",
+      "Desc": "스파게티코드(노멀)",
+      "fMaxHP": "2",
+      "fCurrentHP": "2",
+      "fDamage": "1",
+      "AttackDistance": "1",
+      "DetectionDistance": "6",
+      "IsAttackin": "0",
+      "fMoveSpeed": "1",
+      "fBulletSpeed": "1",
+      "fBulletLifeTime": "1",
+      "timeBetweenShots": "1"
+    },
+    {
+      "ID": "1",
+      "MonsterName": "spagetticode",
+      "Desc": "스파게티코드(보스)",
+      "fMaxHP": "6",
+      "fCurrentHP": "6",
+      "fDamage": "1",
+      "AttackDistance": "1",
+      "DetectionDistance": "6",
+      "IsAttackin": "0",
+      "fMoveSpeed": "1",
+      "fBulletSpeed": "1",
+      "fBulletLifeTime": "1",
+      "timeBetweenShots": "1"
+    },
+    {
+      "ID": "2",
+      "MonsterName": "FileError",
+      "Desc": "파일포함에러(노멀)",
+      "fMaxHP": "2",
+      "fCurrentHP": "2",
+      "fDamage": "1",
+      "AttackDistance": "1",
+      "DetectionDistance": "6",
+      "IsAttackin": "0",
+      "fMoveSpeed": "1",
+      "fBulletSpeed": "1",
+      "fBulletLifeTime": "1",
+      "timeBetweenShots": "1"
+    },
+    {
+      "ID": "3",
+      "MonsterName": "FileError",
+      "Desc": "파일포함에러(보스)",
+      "fMaxHP": "6",
+      "fCurrentHP": "6",
+      "fDamage": "1",
+      "AttackDistance": "1",
+      "DetectionDistance": "6",
+      "IsAttackin": "0",
+      "fMoveSpeed": "1",
+      "fBulletSpeed": "1",
+      "fBulletLifeTime": "1",
+      "timeBetweenShots": "1"
+    }
+
+  ]
+}

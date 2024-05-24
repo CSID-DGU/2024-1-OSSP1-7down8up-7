@@ -31,6 +31,11 @@ public class RangedMonsterFactory : MonsterFactory<MONSTER_RANGED>
         rangedMonster.GetComponent<MonsterStat>().SetCurrentHP(Monsterdict[ID].fCurrentHP);
         rangedMonster.GetComponent<MonsterStat>().SetDamage(Monsterdict[ID].fDamage);
 
+        rangedMonster.GetComponent<MonsterStat>().SetMoveSpeed(Monsterdict[ID].fMoveSpeed);
+        rangedMonster.GetComponent<MonsterStat>().SetBulletSpeed(Monsterdict[ID].fBulletSpeed);
+        rangedMonster.GetComponent<MonsterStat>().SetBulletLifeTime(Monsterdict[ID].fBulletLifeTime);
+        rangedMonster.GetComponent<MonsterStat>().SetTimeBetweenShots(Monsterdict[ID].timeBetweenShots);
+
         rangedMonster.gameObject.SetActive(true);
         rangedMonster.gameObject.tag = "RangedMonster";
         return rangedMonster;

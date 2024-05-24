@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class MeleeMonsterFactory : MonsterFactory<MONSTER_MELEE>
 {
@@ -33,6 +34,11 @@ public class MeleeMonsterFactory : MonsterFactory<MONSTER_MELEE>
         meleeMonster.GetComponent<MonsterStat>().SetMaxHP(Monsterdict[ID].fMaxHP);
         meleeMonster.GetComponent<MonsterStat>().SetCurrentHP(Monsterdict[ID].fCurrentHP);
         meleeMonster.GetComponent<MonsterStat>().SetDamage(Monsterdict[ID].fDamage);
+
+        meleeMonster.GetComponent<MonsterStat>().SetMoveSpeed(Monsterdict[ID].fMoveSpeed);
+        meleeMonster.GetComponent<MonsterStat>().SetBulletSpeed(Monsterdict[ID].fBulletSpeed);
+        meleeMonster.GetComponent<MonsterStat>().SetBulletLifeTime(Monsterdict[ID].fBulletLifeTime);
+        meleeMonster.GetComponent<MonsterStat>().SetTimeBetweenShots(Monsterdict[ID].timeBetweenShots);
 
         meleeMonster.gameObject.SetActive(true);
         meleeMonster.gameObject.tag = "MeleeMonster";
