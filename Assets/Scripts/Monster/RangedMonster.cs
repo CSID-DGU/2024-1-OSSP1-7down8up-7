@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.AI;
+
 public enum MONSTER_RANGED
 {
     NORMAL,
@@ -12,36 +12,61 @@ public enum MONSTER_RANGED
 
 public class RangedMonster : Monster
 {
-    
+    private MonsterStat stat;
+    private MonsterShooter monsterShooter;
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
+
     public void Awake() 
     {
-        CurrentHP = MaxHP;
+        stat=GetComponent<MonsterStat>();
+        IsAttacking = false;
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        agent.avoidancePriority = UnityEngine.Random.Range(0,50);
         rb2D = GetComponent<Rigidbody2D>();
-        rb2D.isKinematic = true;
         circleCollider = GetComponent<CircleCollider2D>();
         monsterController = GetComponent<MonsterController>();
-    }
-
-    public void Start() 
-    {
-        attackDistance = 2f;
-        detectionDistance = 4f;
+        monsterShooter = GetComponent<MonsterShooter>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
+        animator = GetComponent<Animator>();
     }
 
     public override void Attack() 
     {
-        Debug.Log("ranger attack");
+        monsterShooter.Shoot();
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Bullet")) 
-            return;
+        
+        if (collision.gameObject.CompareTag("Bullet")) //monster is shot
+        {
+            stat.GetHarmd(collision.gameObject.GetComponent<Bullet>().damage);
+            animator.SetTrigger("isDamaged");
+           
+            StartCoroutine(BlinkRed());
+        }
+        return;
+    }
 
-        //CurrentHP -= collision.GetComponent<Bullet>().damage; 
-        Debug.Log("shooting monster");
+    private IEnumerator BlinkRed()
+    {
+       
+        float blinkDuration = 0.5f; // Total duration of the blinking effect
+        float blinkInterval = 0.1f; // Interval between blinks
+        float elapsedTime = 0f;
+        while (elapsedTime < blinkDuration)
+        {
+            spriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(blinkInterval);
+            spriteRenderer.color = originalColor;
+            yield return new WaitForSeconds(blinkInterval);
+            elapsedTime += 2 * blinkInterval;
+        }
+        // Ensure the color is reset to the original after blinking
+        spriteRenderer.color = originalColor;
     }
 }

@@ -27,7 +27,7 @@ public class BaseStat : MonoBehaviour
     }
     public float GetMaxHP()
     {
-        return fMaxHP;
+        return fMaxHP;      
     }
 
     public void SetCurrentHP(float value)
@@ -59,27 +59,28 @@ public class BaseStat : MonoBehaviour
     }
     public void ChangeMaxHP(float value)   //최대 체력값 변경
     {
+        Debug.Log(value);
         fMaxHP += value;
     }
 
     ////공격력 처리 함수들
     public float GetDamage()
     {
-        return fDamage;
+        return Mathf.Max(fDamage, 0);
     }
     public float GetBulletSpeed()
     {
-        return fBulletSpeed;
+        return Mathf.Max(fBulletSpeed, 0);
     }
     public float GetBulletLifeTime()
     {
-        return fBulletLifeTime;
+        return Mathf.Max(fBulletLifeTime, 0);
     }
     public float GetTimeBetweenShots()
     {
-        return timeBetweenShots;
+        return Mathf.Max(timeBetweenShots, 0);
     }
-   
+
 
     public void SetDamage(float value)
     {
@@ -99,15 +100,23 @@ public class BaseStat : MonoBehaviour
     }
     public void ChangeTimeBetweenShots(float value)
     {
+
         timeBetweenShots += value;
     }
     public void ChangeDamage(float value)
     {
+
+
+
         fDamage += value;
+
     }
     public void ChangeBulletSpeed(float value)
     {
+
+
         fBulletSpeed += value;
+
     }
     public void ChangeBulletLifeTime(float value)
     {
@@ -117,6 +126,7 @@ public class BaseStat : MonoBehaviour
     //이동속도 처리 함수들
     public float GetMoveSpeed()
     {
+        //return Mathf.Max(fMoveSpeed, 0);
         return fMoveSpeed;
     }
 

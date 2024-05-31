@@ -3,38 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-//manage monster's movement and state
 public class MonsterController : MonoBehaviour
 {
-    //monster object
     private Monster monster;
-
-    //state
     private MonsterState AIState;
+    private MonsterStat stat;
 
-    //transform
     private Transform monsterTr;
     private Transform playerTr;
     private NavMeshAgent agent;
 
-    //check state
     private bool isIdle;
     private bool IsAttacking;
     private bool IsDied;
 
-    //moving direction
     private Vector3 movingDirection;
     private Vector3 nextMovingDirection;
-    public Vector3 desireVelocity;
 
-    private static WaitForSeconds CheckingTime = new WaitForSeconds(0.2f);
+    private static readonly WaitForSeconds CheckingTime = new WaitForSeconds(0.3f);
 
-    //distance from player //store in monster script
-    float attackDistance;
-    float detectionDistance;
-
-    // when monster die, disappearing time
+    private const float WanderingTime = 6.0f;
+    private const float IdleTime = 1.0f;
+    private float WanderingTimer;
     private float monsterDisappearingTime = 1f;
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
+
 
     private void Awake()
     {
@@ -42,37 +36,37 @@ public class MonsterController : MonoBehaviour
         {
             case "MeleeMonster":
                 monster = GetComponent<MeleeMonster>();
-                Debug.Log("meleeMonster controller");
                 break;
             case "RangedMonster":
                 monster = GetComponent<RangedMonster>();
-                Debug.Log("rangedMonster controller");
                 break;
-            // case "DebuffMonster":
-            //     monster = GetComponent<debuffMonster>();
-            //     break;
-            default:
-                Debug.LogError("Unknown monster type on: " + gameObject.name);
+            case "DebuffMonster":
+                monster = GetComponent<DebuffMonster>();
                 break;
         }
+
         playerTr = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        stat = GetComponent<MonsterStat>();
         monsterTr = GetComponent<Transform>();
-        agent = GetComponent<NavMeshAgent>();
-        agent.stoppingDistance = attackDistance;
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnEnable()
     {
-        agent.ResetPath();
+        WanderingTimer = 0f;
         IsDied = false;
         AIState = MonsterState.Idle;
+        animator.SetBool("isIdle", true);    
     }
 
     private void Start()
     {
-        attackDistance = monster.attackDistance;
-        detectionDistance = monster.detectionDistance;
-        StartCoroutine(this.CheckMonsterAI());
+        agent = GetComponent<NavMeshAgent>();
+        agent.speed = stat.GetMoveSpeed();
+        agent.stoppingDistance = stat.GetAttackDistance() - 0.2f;
+        //agent.ResetPath();
+        StartCoroutine(CheckMonsterAI());
     }
 
     private void OnDisable()
@@ -80,80 +74,140 @@ public class MonsterController : MonoBehaviour
         StopAllCoroutines();
     }
 
-    //checking monster state using distance
-    IEnumerator CheckMonsterAI()
+    private IEnumerator CheckMonsterAI()
     {
-        while (IsDied == false)
+        while (!IsDied)
         {
             yield return CheckingTime;
 
             float DistanceFromPlayer = Vector3.Distance(playerTr.position, monsterTr.position);
+            monster.rb2D.isKinematic = true;
 
-            if (DistanceFromPlayer < detectionDistance && DistanceFromPlayer >= attackDistance)
+            if (monster.IsAttacking || DistanceFromPlayer < stat.GetAttackDistance())
             {
-                AIState = MonsterState.Chasing;
+                if (DistanceFromPlayer == 0)
+                {
+                    monster.rb2D.isKinematic = false;
+                }
+                AIState = MonsterState.Attacking;   
             }
-            else if (DistanceFromPlayer < attackDistance)
+            else if (DistanceFromPlayer < stat.GetDetectionDistance())
             {
-                AIState = MonsterState.Attacking;
+                AIState = MonsterState.Chasing;  
             }
             else
             {
-                AIState = MonsterState.Idle;
+                if (AIState != MonsterState.Idle)
+                {
+                    AIState = MonsterState.Wandering;    
+                }
             }
         }
     }
 
     private void Update()
-{
-    if (IsDied)
     {
-        return;
-    }
-
-    desireVelocity.x = agent.desiredVelocity.x;
-    desireVelocity.y = agent.desiredVelocity.y;
-
-    if (monster.CurrentHP <= 0)
-    {
-        IsDied = true;
-        Invoke("DeactivateMonster", monsterDisappearingTime);
-        return;
-    }
-
-    // Action Change by AI State //monster polymorphism
-    switch (AIState)
-    {
-        case MonsterState.Attacking:
+        if (!stat.IsAlive())
+        {
+            DeactivateMonster();
+            return;
+        }
+        if (agent.isOnNavMesh)
+        {
+            switch (AIState)
             {
-                monsterTr.LookAt(playerTr);
-                agent.ResetPath();
-
-                monster.Attack(); //monster's method call
-
-                break;
+                case MonsterState.Attacking:
+                    animator.SetBool("isAttacking", true); 
+                    HandleAttackingState();
+                    break;
+                case MonsterState.Chasing:
+                    animator.SetBool("isChasing", true);  
+                    HandleChasingState();
+                    break;
+                case MonsterState.Idle:
+                    animator.SetBool("isIdle", true);    
+                    HandleIdleState();
+                    break;
+                case MonsterState.Wandering:
+                    animator.SetBool("isWandering", true);
+                    HandleWanderingState();
+                    break;
             }
-        case MonsterState.Chasing:
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if (playerTr.position.x >= this.transform.position.x) {
+            spriteRenderer.flipX = true;
+        } else {
+            spriteRenderer.flipX = false;
+        }
+    }
+
+
+    private void HandleAttackingState()
+    {
+        agent.ResetPath();
+        agent.SetDestination(playerTr.position);
+        monster.Attack();
+        //Debug.Log(monster.name + " Attack call");
+    }
+
+    private void HandleChasingState()
+    {
+        agent.SetDestination(playerTr.position);
+    }
+
+    private void HandleIdleState()
+    {
+        if (agent.isOnNavMesh)
+        {
+            WanderingTimer += Time.deltaTime;
+            if (WanderingTimer > IdleTime)
             {
-                if (!agent.hasPath || agent.remainingDistance < 0.5f)
+                Vector3 randomDirection = RandomDirection();
+                Vector3 randomDestination = transform.position + randomDirection * Random.Range(1, 3);
+                NavMeshHit hit;  // NavMesh 샘플링 결과를 저장할 구조체
+
+                if (NavMesh.SamplePosition(randomDestination, out hit, 2.0f, NavMesh.AllAreas))
                 {
-                    agent.SetDestination(playerTr.position);
+                    movingDirection = hit.position;
                 }
-                break;
-            }
-        case MonsterState.Idle:
-            {
-                if (!agent.hasPath || agent.remainingDistance < 0.5f)
+                else
                 {
-                    movingDirection = RandomDecideRoamingDirection();
-                    agent.SetDestination(movingDirection);
+                    // Walkable 위치를 찾지 못한 경우 현재 위치를 유지
+                    movingDirection = transform.position;
                 }
-                break;
-            }
-    }
-}
 
-    private Vector3 RandomDecideRoamingDirection()
+                WanderingTimer = 0;
+                AIState = MonsterState.Wandering;
+            }
+
+            agent.ResetPath();
+        }
+            
+    }
+
+    private void HandleWanderingState()
+    {
+        WanderingTimer += Time.deltaTime;
+
+        if (WanderingTimer > WanderingTime)
+        {
+            WanderingTimer = 0;
+            AIState = MonsterState.Idle;
+        }
+
+        agent.SetDestination(movingDirection);
+
+        if (isAtTargetLocation())
+        {
+            movingDirection = nextMovingDirection;
+        }
+    }
+
+    private Vector3 RandomDirection()
     {
         float angle = Random.Range(0, 360) * Mathf.Deg2Rad;
         return new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0);
@@ -162,22 +216,13 @@ public class MonsterController : MonoBehaviour
     private void DeactivateMonster()
     {
         gameObject.SetActive(false);
+        gameObject.GetComponentInParent<MonsterManager>().RemoveMonster(monster);
+        Destroy(gameObject);
     }
 
-    private bool isAtTargetLocation(NavMeshAgent navMeshAgent, Vector3 moveTarget, float minDistance)
+
+    private bool isAtTargetLocation()
     {
-        float dist;
-
-        //-- If navMeshAgent is still looking for a path then use line test
-        if (navMeshAgent.pathPending)
-        {
-            dist = Vector3.Distance(transform.position, moveTarget);
-        }
-        else
-        {
-            dist = navMeshAgent.remainingDistance;
-        }
-
-        return dist <= minDistance;
+        return !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance && !agent.hasPath;
     }
 }

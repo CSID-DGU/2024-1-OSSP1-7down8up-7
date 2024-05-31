@@ -1,0 +1,137 @@
+{
+  "itemData": [
+    {
+      "itemID": "0",
+      "isAlive": "1",
+      "fMoveSpeed": "0",
+      "fMaxHP": "10",
+      "fDamage": "2",
+      "fBulletSpeed": "1",
+      "fBulletLifeTime": "1",
+      "fCurrentHP": "1",
+      "timeBetweenShots": "0"
+    },
+    {
+      "itemID": "1",
+      "isAlive": "true",
+      "fMoveSpeed": "1",
+      "fMaxHP": "10",
+      "fDamage": "1",
+      "fBulletSpeed": "1",
+      "fBulletLifeTime": "1",
+      "fCurrentHP": "1",
+      "timeBetweenShots": "0"
+    },
+    {
+      "itemID": "2",
+      "isAlive": "1",
+      "fMoveSpeed": "2",
+      "fMaxHP": "20",
+      "fDamage": "2",
+      "fBulletSpeed": "2",
+      "fBulletLifeTime": "2",
+      "fCurrentHP": "2",
+      "timeBetweenShots": "0"
+    },
+    {
+      "itemID": "3",
+      "isAlive": "1",
+      "fMoveSpeed": "3",
+      "fMaxHP": "10",
+      "fDamage": "2",
+      "fBulletSpeed": "1",
+      "fBulletLifeTime": "1",
+      "fCurrentHP": "1",
+      "timeBetweenShots": "0"
+    },
+    {
+      "itemID": "4",
+      "isAlive": "1",
+      "fMoveSpeed": "4",
+      "fMaxHP": "10",
+      "fDamage": "2",
+      "fBulletSpeed": "1",
+      "fBulletLifeTime": "1",
+      "fCurrentHP": "1",
+      "timeBetweenShots": "0"
+    },
+    {
+      "itemID": "5",
+      "isAlive": "1",
+      "fMoveSpeed": "5",
+      "fMaxHP": "10",
+      "fDamage": "2",
+      "fBulletSpeed": "1",
+      "fBulletLifeTime": "1",
+      "fCurrentHP": "1",
+      "timeBetweenShots": "0"
+    },
+    {
+      "itemID": "6",
+      "isAlive": "1",
+      "fMoveSpeed": "6",
+      "fMaxHP": "10",
+      "fDamage": "2",
+      "fBulletSpeed": "1",
+      "fBulletLifeTime": "1",
+      "fCurrentHP": "1",
+      "timeBetweenShots": "0"
+    },
+    {
+      "itemID": "7",
+      "isAlive": "1",
+      "fMoveSpeed": "7",
+      "fMaxHP": "10",
+      "fDamage": "2",
+      "fBulletSpeed": "1",
+      "fBulletLifeTime": "1",
+      "fCurrentHP": "1",
+      "timeBetweenShots": "0"
+    },
+    {
+      "itemID": "8",
+      "isAlive": "1",
+      "fMoveSpeed": "8",
+      "fMaxHP": "10",
+      "fDamage": "2",
+      "fBulletSpeed": "1",
+      "fBulletLifeTime": "1",
+      "fCurrentHP": "1",
+      "timeBetweenShots": "0"
+    },
+    {
+      "itemID": "9",
+      "isAlive": "1",
+      "fMoveSpeed": "9",
+      "fMaxHP": "10",
+      "fDamage": "2",
+      "fBulletSpeed": "1",
+      "fBulletLifeTime": "1",
+      "fCurrentHP": "1",
+      "timeBetweenShots": "0"
+    },
+    {
+      "itemID": "10",
+      "isAlive": "1",
+      "fMoveSpeed": "10",
+      "fMaxHP": "10",
+      "fDamage": "2",
+      "fBulletSpeed": "1",
+      "fBulletLifeTime": "1",
+      "fCurrentHP": "1",
+      "timeBetweenShots": "0"
+    },
+    {
+      "itemID": "11",
+      "isAlive": "1",
+      "fMoveSpeed": "11",
+      "fMaxHP": "10",
+      "fDamage": "2",
+      "fBulletSpeed": "1",
+      "fBulletLifeTime": "1",
+      "fCurrentHP": "1",
+      "timeBetweenShots": "0"
+    }
+    
+  ]
+}

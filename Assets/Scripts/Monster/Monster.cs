@@ -14,12 +14,11 @@ public enum MonsterType
 public abstract class Monster :MonoBehaviour
 {
     public int ID;
-    public string name;
+    public string monsterName;
     public string desc;
-    public int MaxHP;
-    public int CurrentHP;
-    public int Speed;
-    public int Power;
+    public float MaxHP;
+    public float CurrentHP;
+    public float Power;
 
     public NavMeshAgent agent;
     public Rigidbody2D rb2D;
@@ -28,6 +27,9 @@ public abstract class Monster :MonoBehaviour
 
     public float attackDistance;
     public float detectionDistance;
+    public bool IsAttacking;
+    public Animator animator;
+
     
     public abstract void Attack();
 }

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Heart_Controller
+  m_Controller: {fileID: 9100000, guid: dc9a0e0788296d042a2dc7527d4d9e5c, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 947db8b4a29eeba469bab826a04e36cc, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: cfb554bf69651e44cb34abdc5d130e3c, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6fe42b4c28be68941bba2c6a27ab3a9b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: cfb554bf69651e44cb34abdc5d130e3c, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 9d62616f221b687409056247ede33e59, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 1779b58f6eb2a824382d45263b242804, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 9bd34eab6ef92244e8c88f1ce203f2d4, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 1779b58f6eb2a824382d45263b242804, type: 2}

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using static PassiveItem;
 
 public enum MONSTER_MELEE
 {
@@ -12,37 +13,66 @@ public enum MONSTER_MELEE
 
 public class MeleeMonster : Monster
 {
-
+    private MonsterStat stat;
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
     public void Awake() 
     {
-        CurrentHP = MaxHP;
+        IsAttacking = false;
+    }
+    public void Start()
+    {
+        stat = GetComponent<MonsterStat>();
+        rb2D = GetComponent<Rigidbody2D>();
+        circleCollider = GetComponent<CircleCollider2D>();
+        monsterController = GetComponent<MonsterController>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-        rb2D = GetComponent<Rigidbody2D>();
-        rb2D.isKinematic = true;
-        circleCollider = GetComponent<CircleCollider2D>();
-        monsterController = GetComponent<MonsterController>();
+        agent.avoidancePriority = UnityEngine.Random.Range(51, 100);
+        animator = GetComponent<Animator>();
     }
-
-    public void OnEnable() 
-    {
-        attackDistance = 0.1f;
-        detectionDistance = 7.0f;
-    }
-
     public override void Attack() 
     {
-        GameManager.instance.health -= this.Power; //decrease player's health
-        Debug.Log("Player's currentHP = "+GameManager.instance.health);
+        //player stat changed ! 
+       
+        IsAttacking = false;
+    }
+   
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+       
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("�ƾ�!" + collision.gameObject.tag);
+        if (collision.gameObject.CompareTag("Bullet")) //monster is shot
+        {
+            stat.GetHarmd(collision.gameObject.GetComponent<Bullet>().damage);
+            animator.SetTrigger("isDamaged");
+            //Debug.Log("�ƾ�!");
+            StartCoroutine(BlinkRed());
+        }
+        return;
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    private IEnumerator BlinkRed()
     {
-        if (!collision.CompareTag("Bullet")) 
-            return;
-
-        //CurrentHP -= collision.GetComponent<Bullet>().damage; 
-        Debug.Log("shooting monster");
+        // Debug.Log("����");
+        float blinkDuration = 0.5f; // Total duration of the blinking effect
+        float blinkInterval = 0.1f; // Interval between blinks
+        float elapsedTime = 0f;
+        while (elapsedTime < blinkDuration)
+        {
+            spriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(blinkInterval);
+            spriteRenderer.color = originalColor;
+            yield return new WaitForSeconds(blinkInterval);
+            elapsedTime += 2 * blinkInterval;
+        }
+        // Ensure the color is reset to the original after blinking
+        spriteRenderer.color = originalColor;
     }
 }

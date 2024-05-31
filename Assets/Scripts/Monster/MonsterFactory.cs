@@ -1,3 +1,5 @@
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,20 +7,12 @@ using UnityEngine;
 //factory method
 public abstract class MonsterFactory<T> : MonoBehaviour
 {
-    public Monster Spawn(T _type, GameObject _parent)
+    public Monster Spawn(T _type, Vector3 _position, Transform _parentTransform, Dictionary<int, Stat> Monsterdict)
     {
-        Monster monster = Create(_type);
-        monster.transform.SetParent(_parent.transform, false);
-
-        float randomX = Random.Range(_parent.transform.position.x - 7f, _parent.transform.position.x + 7f);
-        float randomY = Random.Range(_parent.transform.position.y - 3f, _parent.transform.position.y + 3f);
-
-        Vector3 randomPosition = new Vector3(randomX, randomY, _parent.transform.position.z);
-
-        monster.transform.localPosition = randomPosition;
+        Monster monster = Create(_type, Monsterdict);
+        monster.transform.SetParent(_parentTransform, false);
+        monster.transform.localPosition = _position;
         return monster;
     }
-    protected abstract Monster Create(T _type);
+    protected abstract Monster Create(T _type, Dictionary<int, Stat> Monsterdict);
 }
-
-
