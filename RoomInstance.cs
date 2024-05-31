@@ -204,7 +204,7 @@ public class RoomInstance : MonoBehaviour
     void Update()
     {
         // 방 타입이 2이고 몬스터가 전부 없어진 경우 다음 스테이지로 이동
-        if (type == 1 && monsterManager != null && monsterManager.getMonsterCount() == 0)
+        if (type == 2 && monsterManager != null && monsterManager.getMonsterCount() == 0)
         {
             if (stageTargetInstance == null)
             {
