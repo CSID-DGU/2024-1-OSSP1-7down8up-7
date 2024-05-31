@@ -1,0 +1,11 @@
+수정된 코드
+GameManager.cs
+Player.cs
+PlayerStat.cs
+PassiveItem.cs
+ItemStat.cs
+PauseUI.cs
+
+추가된 코드
+Inventory.cs
+Slot.cs
