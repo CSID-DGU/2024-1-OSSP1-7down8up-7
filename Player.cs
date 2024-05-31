@@ -1,98 +1,160 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.U2D;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance; //
+    private bool isDamaged;
+
     [SerializeField]
-    private float moveSpeed;
-    private Animator anim;
-    bool door_check0 = false;
-    bool door_check1 = false;
-    bool door_check2 = false;   // door tag에 숫자 부여하여 door1, door2과 같은 형식으로 표현 
+    private InputActionReference attack, pointerPosition;
+    private Vector2 pointerInput;
+    private WeaponParent weaponParent;
+    public PlayerStat playerStat;
+    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRendererHead;
+    private Color originalColor;
+
+    Animator anim;
+
     Rigidbody2D rb;
     Collider2D coll;
 
-    void Start()
+    void Awake()
     {
+
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        } //
+
         anim = GetComponent<Animator>();
+        weaponParent = GetComponentInChildren<WeaponParent>();
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
+        playerStat = GetComponent<PlayerStat>();
+        isDamaged = false;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        originalColor = Color.white;
     }
 
     void Update()
     {
-        float inputX = Input.GetAxisRaw("Horizontal");
-        float inputY = Input.GetAxisRaw("Vertical");
+        pointerInput = GetPointerInput();
+        weaponParent.PointerPosition = pointerInput;
+        float inputX = Input.GetAxisRaw("Horizontal"); // 수평이동
+        float inputY = Input.GetAxisRaw("Vertical"); // 수직이동
 
         anim.SetFloat("inputX", inputX);
         anim.SetFloat("inputY", inputY);
-        anim.SetBool("isMove", inputX != 0 || inputY != 0);
 
-        Vector3 pos = this.transform.position;
-        Vector3 pos1 = new Vector3(7.5f, 0.0f, pos.z);
-        float term = 0.5f;
-        bool door_check = (pos.x < pos1.x + term) && (pos.x > pos1.x - term) && (pos.y < pos1.y + term) && (pos.y > pos1.y - term);
-        if (door_check0)
-        {
-            SceneManager.LoadScene("CombatScene1");
-            Debug.Log("door0");
-        }
-
-        if (door_check1)
-        {
-            SceneManager.LoadScene("CombatScene2");
-            Debug.Log("door1");
-        }
-        if(door_check2)
-        {
-            SceneManager.LoadScene("CombatScene3");
-            Debug.Log("door2");
-        } 
-    }
-
-    void FixedUpdate()
-    {
-        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        rb.MovePosition(rb.position + input * moveSpeed * Time.fixedDeltaTime);
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Enemy")) // 근거리 몬스터와 접촉했을 때
-        {
-            GameManager.instance.health -= collision.GetComponent<Enemy>().damage; 
-            Debug.Log("몬스터와 접촉 ! " + GameManager.instance.health);
-        }
-        else if (collision.CompareTag("door0"))
-        {
-            door_check0 = true;
-        }
-        else if (collision.CompareTag("door1"))
-        {
-            door_check1 = true;
-        }
-        else if (collision.CompareTag("door2"))
-        {
-            door_check2 = true;
-        }
-        // door_check 변수가 위치 기반으로 되어 있는데 door object에 collider 감지되면 TRUE로 바뀌도록
-
-        if ( GameManager.instance.health > 0)
-        {
-            // .. 아직 살아있음 -> Hit Action 
-        }
+        if (inputX != 0 || inputY != 0)
+            anim.SetBool("isMove", true);
         else
+            anim.SetBool("isMove", false);
+
+        Vector3 moveTo = new Vector3(inputX, inputY, 0);
+        // transform.position += moveTo * playerStat.GetMoveSpeed() * Time.deltaTime;
+        //Debug.Log(playerStat.GetMoveSpeed());
+        GetComponent<Rigidbody2D>().velocity = moveTo * playerStat.GetMoveSpeed();
+
+
+        if (attack.action.triggered)
+            weaponParent.Attack(pointerInput);
+
+    }
+
+    private Vector2 GetPointerInput()
+    {
+        Vector3 mousePos = pointerPosition.action.ReadValue<Vector2>();
+        mousePos.z = Camera.main.nearClipPlane;
+        return Camera.main.ScreenToWorldPoint(mousePos);
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("MeleeMonster") || collision.gameObject.CompareTag("RangedMonster"))
         {
-            // .. 체력이 0보다 작음 -> Die 
-            Dead();
-            GameManager.instance.kill++;
-            GameManager.instance.GetExp();
+            if (isDamaged == false)
+            {
+                Debug.Log("몬스터!");
+                StartCoroutine(GetDamaged());
+                playerStat.GetHarmd(collision.gameObject.GetComponent<MonsterStat>().GetDamage());
+                Debug.Log(playerStat.GetPlayerStressToShow());
+                if (!playerStat.IsAlive())
+                {
+                    Dead();
+                }
+            }
+
+        }
+
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("PItem"))
+        {
+            // Debug.Log("아이템!");
+            GameObject Pitem = collision.gameObject;
+            PassiveItem Activate = Pitem.GetComponent<PassiveItem>();
+            float itemID = Pitem.GetComponent<ItemStat>().GetItemID();
+            Activate.Activate(itemID);
+            Pitem.SetActive(false); //지금은 SetActive False로 해두었는데 나중에 UI로 이동시키는 방법 찾아보면 될 듯해요
+        }
+        else if (collision.CompareTag("MonsterBullet"))
+        {
+            Debug.Log("몬스터 총알");
+            if (isDamaged == false)
+            {
+                StartCoroutine(GetDamaged());
+                playerStat.GetHarmd(collision.gameObject.GetComponent<MonsterBullet>().damage);
+            }
+            //Debug.Log("몬스터 총알");
+
+        }
+        else if (collision.CompareTag("StageTarget")) // stage_target과 충돌 시
+        {
+            FindObjectOfType<RoomInstance>().LoadNextStage();
         }
     }
 
+    private IEnumerator GetDamaged()
+    {
+        spriteRendererHead = GetComponentInChildren<PlayerHead>().spriteRenderer;
+        isDamaged = true;
+        // Debug.Log("깜빡");
+        float blinkDuration = 0.5f; // Total duration of the blinking effect
+        float blinkInterval = 0.1f; // Interval between blinks
+        float elapsedTime = 0f;
+        while (elapsedTime < blinkDuration)
+        {
+            spriteRenderer.color = Color.red;
+            spriteRendererHead.color = Color.red;
+            yield return new WaitForSeconds(blinkInterval);
+            spriteRenderer.color = Color.white;
+            spriteRendererHead.color = Color.white;
+            yield return new WaitForSeconds(blinkInterval);
+            elapsedTime += 2 * blinkInterval;
+        }
+        // Ensure the color is reset to the original after blinking
+        spriteRenderer.color = Color.white;
+        spriteRendererHead.color = Color.white;
+        isDamaged = false;
+    }
     void Dead()
     {
         GameManager.instance.GameOver();
     }
 }
+
 
