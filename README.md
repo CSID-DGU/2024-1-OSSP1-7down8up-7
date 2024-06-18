@@ -46,4 +46,4 @@
 ### 2024년 1학기 공개SW프로젝트 7조 칠전팔기
 |<img src="https://avatars.githubusercontent.com/u/107466954?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/130528139?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/129031536?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/114053367?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/133950155?v=4" width="150" height="150"/>|
 |:-:|:-:|:-:|:-:|:-:|
-|김수민<br/>[@angelsusum](https://github.com/angelsusum)|백종헌<br/>[@cuteyellow](https://github.com/cuteyellow)|손채연<br/>[@Chaeyeon26](https://github.com/Chaeyeon26)|오준민<br/>[@119qwer](https://github.com/119qwer)|조서희<br/>[@JoeSeoHee](https://github.com/JoeSeoHee)|
+|👑김수민<br/>[@angelsusum](https://github.com/angelsusum)|🧑‍💻백종헌<br/>[@cuteyellow](https://github.com/cuteyellow)|👩‍💻손채연<br/>[@Chaeyeon26](https://github.com/Chaeyeon26)|🧑‍💻오준민<br/>[@119qwer](https://github.com/119qwer)|👩‍💻조서희<br/>[@JoeSeoHee](https://github.com/JoeSeoHee)|
