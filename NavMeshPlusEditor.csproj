@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{2E2C1E45-369B-CFDF-BFC8-3339B7EC9508}</ProjectGuid>
+    <ProjectGuid>{E7607AD7-B598-5272-558E-5B9237D22DB4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>NavMeshPlusEditor</AssemblyName>
@@ -60,22 +60,22 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.23f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Packages\NavMeshPlus-master\NavMeshComponents\Editor\NavMeshModifierTilemapEditor.cs" />
-    <Compile Include="Packages\NavMeshPlus-master\NavMeshComponents\Editor\NavMeshLinkEditor.cs" />
-    <Compile Include="Packages\NavMeshPlus-master\NavMeshComponents\Editor\NavMeshModifierVolumeEditor.cs" />
-    <Compile Include="Packages\NavMeshPlus-master\NavMeshComponents\Editor\NavMeshAreaAttributePropertyDrawer.cs" />
-    <Compile Include="Packages\NavMeshPlus-master\NavMeshComponents\Editor\CollectSourcesCache2dEditor.cs" />
-    <Compile Include="Packages\NavMeshPlus-master\NavMeshComponents\Editor\NavMeshModifierEditor.cs" />
-    <Compile Include="Packages\NavMeshPlus-master\NavMeshComponents\Editor\NavMeshSurfaceEditor.cs" />
-    <Compile Include="Packages\NavMeshPlus-master\NavMeshComponents\Editor\NavMeshAssetManager.cs" />
-    <Compile Include="Packages\NavMeshPlus-master\NavMeshComponents\Editor\AgentOverride2dEditor.cs" />
-    <Compile Include="Packages\NavMeshPlus-master\NavMeshComponents\Editor\RootSources2dEditor.cs" />
-    <Compile Include="Packages\NavMeshPlus-master\NavMeshComponents\Editor\NavMeshComponentsGUIUtility.cs" />
-    <Compile Include="Packages\NavMeshPlus-master\NavMeshComponents\Editor\CollectSources2dEditor.cs" />
-    <Compile Include="Packages\NavMeshPlus-master\NavMeshComponents\Editor\NavMeshAgentAttributePropertyDrawer.cs" />
+    <Compile Include="Assets\NavMeshPlus-master\NavMeshComponents\Editor\AgentOverride2dEditor.cs" />
+    <Compile Include="Assets\NavMeshPlus-master\NavMeshComponents\Editor\NavMeshSurfaceEditor.cs" />
+    <Compile Include="Assets\NavMeshPlus-master\NavMeshComponents\Editor\CollectSourcesCache2dEditor.cs" />
+    <Compile Include="Assets\NavMeshPlus-master\NavMeshComponents\Editor\NavMeshAssetManager.cs" />
+    <Compile Include="Assets\NavMeshPlus-master\NavMeshComponents\Editor\NavMeshLinkEditor.cs" />
+    <Compile Include="Assets\NavMeshPlus-master\NavMeshComponents\Editor\NavMeshModifierEditor.cs" />
+    <Compile Include="Assets\NavMeshPlus-master\NavMeshComponents\Editor\NavMeshModifierVolumeEditor.cs" />
+    <Compile Include="Assets\NavMeshPlus-master\NavMeshComponents\Editor\NavMeshModifierTilemapEditor.cs" />
+    <Compile Include="Assets\NavMeshPlus-master\NavMeshComponents\Editor\NavMeshAreaAttributePropertyDrawer.cs" />
+    <Compile Include="Assets\NavMeshPlus-master\NavMeshComponents\Editor\RootSources2dEditor.cs" />
+    <Compile Include="Assets\NavMeshPlus-master\NavMeshComponents\Editor\NavMeshAgentAttributePropertyDrawer.cs" />
+    <Compile Include="Assets\NavMeshPlus-master\NavMeshComponents\Editor\NavMeshComponentsGUIUtility.cs" />
+    <Compile Include="Assets\NavMeshPlus-master\NavMeshComponents\Editor\CollectSources2dEditor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Packages\NavMeshPlus-master\NavMeshComponents\Editor\NavMeshComponentsEditor.asmdef" />
+    <None Include="Assets\NavMeshPlus-master\NavMeshComponents\Editor\NavMeshComponentsEditor.asmdef" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -416,6 +416,10 @@
     </Reference>
     <Reference Include="UnityEditor.Graphs">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.23f1\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.WebGL.Extensions">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.23f1\Editor\Data\PlaybackEngines\WebGLSupport\UnityEditor.WebGL.Extensions.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
@@ -981,7 +985,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="NavMeshPlus.csproj">
-      <Project>{E7D1B1E5-9FC1-3ACF-7EBB-E6935A5CA672}</Project>
+      <Project>{D9D15F42-0C1A-1619-BC8F-41D87CA3C7AD}</Project>
       <Name>NavMeshPlus</Name>
     </ProjectReference>
   </ItemGroup>

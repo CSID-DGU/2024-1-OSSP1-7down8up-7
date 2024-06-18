@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -12,20 +13,34 @@ public class GameManager : MonoBehaviour
     public float maxGameTime = 2 * 10f;
     [Header("# Player Info")]
     public int playerId;
-    public float health;
-    public float maxHealth = 100;
-    public int kill;
-    public int killsToGetItem=20;
     [Header("# Game Object")]
-    public PoolManager pool;
     public Player player;
-    // public LevelUp uiLevelUp;
-    // public Result uiResult;
-    // public Transform uiJoy;
-    // public GameObject enemyCleaner;
+    public PlayerStat stat;
+    public ItemManager itemManager;
+    public GameResultUI gameResultUI;
+
+    public AudioClip bossAudioClip1;
+    public AudioClip bossAudioClip2;
+    public AudioClip bossAudioClip3;
+    public AudioClip roomAudioClip1;
+    public AudioClip roomAudioClip2;
+    public AudioClip roomAudioClip3;
+
+    public AchievementManager achievementManager;
+
+    private int iBasicItemPoolSize = 8;
+
+    ResourceManager _resource;
+    public static ResourceManager Resource { get { return instance._resource; } }
+    public DataManager _data = new DataManager();
+    public static DataManager Data { get { return instance._data; } }
 
     void Awake()
     {
+        achievementManager = GetComponentInChildren<AchievementManager>();
+        isLive = false;
+        itemManager = GetComponentInChildren<ItemManager>();
+        _resource = GetComponent<ResourceManager>();
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -34,20 +49,75 @@ public class GameManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
         Application.targetFrameRate = 60;
+        _data.Init();
+        itemManager.Init(); //추가
+        // 씬 로드 이벤트 등록
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    IEnumerator SaveData()
+    {
+        while (true)
+        {
+            _data.SaveData();
+            yield return new WaitForSecondsRealtime(10f);
+        }
+    }
+
+    // 씬이 로드될 때 호출되는 함수
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("씬이 로드되었습니다: " + scene.name);
+        if (scene.name == "Main")
+        {
+            isLive = false;
+        }
+        else if (SceneLoader.loadType == 1)
+        {
+            
+            GameObject player1 = GameObject.Find("Player");
+            if (player1 != null)
+            {
+                player = player1.GetComponent<Player>();  // Player 참조 설정
+                stat = player.GetComponent<PlayerStat>();
+            }
+            _data.LoadData();
+            achievementManager.FindUI();
+            isLive = true;
+            itemManager.InitializePoolRandomly(iBasicItemPoolSize - stat.GetitemCount());
+            StartCoroutine(SaveData());
+        }
+        else if (scene.name == "Play_Stage1" && SceneLoader.loadType == 0)
+        {
+          
+            GameObject player1 = GameObject.Find("Player");
+            if (player1 != null)
+            {
+              
+                player = player1.GetComponent<Player>();  // Player 참조 설정
+                stat = player.GetComponent<PlayerStat>();
+                stat.SetBulletLifeTime(0.6f);
+                stat.SetBulletSpeed(5f);
+                stat.SetCurrentHP(100f);
+                stat.SetDamage(8.5f);
+                stat.SetMaxHP(100f);
+                stat.SetMoveSpeed(4f);
+                stat.SetTimeBetweenShots(0.5f);
+                stat.SetScore(1000);
+                stat.SetitemCount(0);
+                stat.itemIDs.Clear();
+                stat.items.Clear();
+                StartCoroutine(SaveData());
+            }
+            itemManager.InitializePoolRandomly(iBasicItemPoolSize - stat.GetitemCount());
+            achievementManager.FindUI();
+            isLive = true;
+        }
     }
 
     public void GameStart(int id)
     {
-        Debug.Log("게임 시작");
-        playerId = id;
-        health = maxHealth;
-        kill = 0;
-        player.gameObject.SetActive(true);
-        // uiLevelUp.Select(playerId % 2);
         Resume();
-
-        // AudioManager.instance.PlayBgm(true);
-        // AudioManager.instance.PlaySfx(AudioManager.Sfx.Select);
     }
 
     public void GameOver()
@@ -59,34 +129,46 @@ public class GameManager : MonoBehaviour
     {
         isLive = false;
 
-        yield return new WaitForSeconds(0.5f);
+        yield return null;
 
-        // uiResult.gameObject.SetActive(true);
-        // uiResult.Lose();
+        SceneManager.LoadScene("GameResult");
+
+        yield return null;
+
+        gameResultUI = FindObjectOfType<GameResultUI>();
+        gameResultUI.SetGameResult(0);
+
+    
+        File.Delete(Path.Combine(_data.savePath, _data.fileName));
+
         Stop();
-
-        // AudioManager.instance.PlayBgm(false);
-        // AudioManager.instance.PlaySfx(AudioManager.Sfx.Lose);
     }
 
-    public void GameVictroy()
+    public void GameVictory()
     {
-        StartCoroutine(GameVictroyRoutine());
+        StartCoroutine(GameVictoryRoutine());
     }
 
-    IEnumerator GameVictroyRoutine()
+    IEnumerator GameVictoryRoutine()
     {
         isLive = false;
-        // enemyCleaner.SetActive(true);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return null;
 
-        // uiResult.gameObject.SetActive(true);
-        // uiResult.Win();
+        SceneManager.LoadScene("GameResult");
+
+        yield return null;
+
+        gameResultUI = FindObjectOfType<GameResultUI>();
+
+        if (stat.GetkillCount() >= 200)
+            gameResultUI.SetGameResult(2);
+        else
+            gameResultUI.SetGameResult(1);
+
+        File.Delete(Path.Combine(_data.savePath, _data.fileName));
+
         Stop();
-
-        // AudioManager.instance.PlayBgm(false);
-        // AudioManager.instance.PlaySfx(AudioManager.Sfx.Win);
     }
 
     public void GameRetry()
@@ -102,35 +184,32 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (!isLive)
+        {
+            StopCoroutine(SaveData());
             return;
+        }
 
-        gameTime += Time.deltaTime;
 
-        if (gameTime > maxGameTime) {
-            gameTime = maxGameTime;
-            GameVictroy();
+        if (stat != null)
+        {
+            stat.ChangeScore(-(float)1.0 * Time.deltaTime);
         }
     }
-
-    public void SpawnItem()
-    {
-
-    }
-
-
 
     public void Stop()
     {
         isLive = false;
-        Time.timeScale = 0;
-        // uiJoy.localScale = Vector3.zero;
     }
 
     public void Resume()
     {
         isLive = true;
         Time.timeScale = 1;
-        // uiJoy.localScale = Vector3.one;
+    }
+
+    void OnDestroy()
+    {
+        // 씬 로드 이벤트 등록 해제
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }
-

@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3136204470201084855
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3284073126714530745}
+  - component: {fileID: 2628083232792710901}
+  m_Layer: 0
+  m_Name: BossMonsterFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3284073126714530745
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3136204470201084855}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.0952804, y: -0.096786976, z: 0.077852964}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2628083232792710901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3136204470201084855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7d546ad3949dc349b7819bdb4fd86de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SnakePrefab: {fileID: 643930431157602721, guid: 6222a42de80317e4dafadc2c92230441, type: 3}
+  AssemblyPrefab: {fileID: 8180766159450870909, guid: 9bedebfbf39021445a83d0c41002ecea, type: 3}
+  SkeletonPrefab1: {fileID: 8180766159450870909, guid: 17a0249b5f58e3047b0783111c95abf0, type: 3}
+  SkeletonPrefab2: {fileID: 8180766159450870909, guid: 4a5e7778d811d8642808dbf0d8399080, type: 3}

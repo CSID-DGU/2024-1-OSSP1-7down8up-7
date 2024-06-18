@@ -1,0 +1,554 @@
+fileFormatVersion: 2
+guid: 2c21c1ba46d0a02479160a6bd7965856
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 40
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: alan_body_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 93.75
+        width: 26.2
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9edf7458536836448bddfa6c649e5c35
+      internalID: 136917054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alan_body_1
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 93.75
+        width: 26.2
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8b8895333bb34e4ca3a36e4d44f0645
+      internalID: -1188114195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alan_body_2
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 93.75
+        width: 26.2
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 457e6a368dee2c447831e45b4bb8e2dc
+      internalID: 638660443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alan_body_3
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 93.75
+        width: 26.2
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adbf11177ff22e1409e61a512154af6c
+      internalID: 257853551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alan_body_4
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 93.75
+        width: 26.2
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c56cfb9b944fc0f41890d3240f022312
+      internalID: -397208880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alan_body_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 62.75
+        width: 26.2
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c787a450589484d46b39118efeb73e57
+      internalID: 85926984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alan_body_6
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 62.75
+        width: 26.2
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2b4cf06fdc804346a37fbbe80a546c7
+      internalID: -340935557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alan_body_7
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 62.75
+        width: 26.2
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6c86deec87f4ce48b3ae8d1bb8d5e8a
+      internalID: -1278207586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alan_body_8
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 62.75
+        width: 26.2
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 671028f1d56788147adf79c8ac907554
+      internalID: 1783901482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alan_body_9
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 62.75
+        width: 26.2
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f7f4f02e954e5e45bf1bd2cd0861ebc
+      internalID: 385736406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alan_body_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 31.75
+        width: 26.2
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d60efa546ec4cfe4cb097a7cd2da5296
+      internalID: -1360946626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alan_body_11
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 31.75
+        width: 26.2
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8a2e6e92bc9f364ab23cebdceb23173
+      internalID: 1345024656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alan_body_12
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 31.75
+        width: 26.2
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ec5c056060c0604584106d22e108c28
+      internalID: -1296997410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alan_body_13
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 31.75
+        width: 26.2
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d62ed7aaa95b60408993dabb40ddef6
+      internalID: -1449050903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alan_body_14
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 31.75
+        width: 26.2
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cced625584089b49a3d14b8683d5bed
+      internalID: -1012075546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alan_body_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0.75
+        width: 26.2
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89100a5b024aec342b8854154d0a2187
+      internalID: 1555235414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alan_body_16
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 0.75
+        width: 26.2
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a077d5db605791e47bc0dc10072fbbdf
+      internalID: -1565754921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alan_body_17
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 0.75
+        width: 26.2
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0bc5f59853b1284e8c743c88c8ae302
+      internalID: -1762401451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alan_body_18
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 0.75
+        width: 26.2
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a1d8f3a8903c5a49a3d64fb4dfd4f33
+      internalID: 1703711423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alan_body_19
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 0.75
+        width: 26.2
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29d4b98c50bef184f8b4521b7188bb44
+      internalID: -1037505109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      alan_body_0: 136917054
+      alan_body_1: -1188114195
+      alan_body_10: -1360946626
+      alan_body_11: 1345024656
+      alan_body_12: -1296997410
+      alan_body_13: -1449050903
+      alan_body_14: -1012075546
+      alan_body_15: 1555235414
+      alan_body_16: -1565754921
+      alan_body_17: -1762401451
+      alan_body_18: 1703711423
+      alan_body_19: -1037505109
+      alan_body_2: 638660443
+      alan_body_3: 257853551
+      alan_body_4: -397208880
+      alan_body_5: 85926984
+      alan_body_6: -340935557
+      alan_body_7: -1278207586
+      alan_body_8: 1783901482
+      alan_body_9: 385736406
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

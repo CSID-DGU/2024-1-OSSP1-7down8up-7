@@ -4,14 +4,27 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - door1
-  - door0
-  - door2
-  - Obstacles
-  - Bullet
   - Enemy
-  - Wall
+  - Bullet
+  - EnemyBullet
+  - door1
+  - Area
+  - door2
+  - door0
   - door3
+  - Wall
+  - Obstacles
+  - MeleeMonster
+  - RangedMonster
+  - MonsterBullet
+  - PItem
+  - Room
+  - GameManager
+  - DebuffMonster
+  - bossDoor0
+  - bossDoor1
+  - bossDoor2
+  - bossDoor3
   layers:
   - Default
   - TransparentFX
@@ -19,7 +32,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Inspector Mine
   - 
   - 
   - 

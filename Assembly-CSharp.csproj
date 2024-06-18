@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{BE6DE9AA-9E83-67C2-9E54-9E541F5A46D5}</ProjectGuid>
+    <ProjectGuid>{32C3BDE6-E125-3128-82C1-25D0441455A3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -60,16 +60,98 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.23f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\WeaponParent.cs" />
-    <Compile Include="Assets\Scripts\Bullet.cs" />
-    <Compile Include="Assets\Scripts\CameraMovement1.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
-    <Compile Include="Assets\Scripts\Door.cs" />
+    <Compile Include="Assets\Scripts\UI\Slot.cs" />
+    <Compile Include="Assets\Scripts\UI\BtnType.cs" />
+    <Compile Include="Assets\Scripts\Player&amp;Bullet\WeaponParent.cs" />
+    <Compile Include="Assets\Scripts\Monster\BossMonsterFactory.cs" />
+    <Compile Include="Assets\Scripts\Monster\boss2_Assemble\Assemble.cs" />
+    <Compile Include="Assets\Scripts\Player&amp;Bullet\Bullet.cs" />
+    <Compile Include="Assets\Scripts\CameraMovement.cs" />
+    <Compile Include="Assets\Scripts\UI\TypingEffect.cs" />
+    <Compile Include="Assets\Scripts\Monster\MonsterFactory.cs" />
+    <Compile Include="Assets\Scripts\ResourceManager.cs" />
+    <Compile Include="Assets\Scripts\Player&amp;Bullet\PlayerStat.cs" />
+    <Compile Include="Assets\Scripts\UI\AchievementUI.cs" />
+    <Compile Include="Assets\Scripts\UI\MainUI.cs" />
+    <Compile Include="Assets\Scripts\Player&amp;Bullet\Player.cs" />
+    <Compile Include="Assets\Scripts\Player&amp;Bullet\Achevements\JuniorBugHunter.cs" />
+    <Compile Include="Assets\Scripts\UtilityBehaviors.cs" />
+    <Compile Include="Assets\Scripts\Map\SheetAssigner.cs" />
+    <Compile Include="Assets\Scripts\UI\StoryManager.cs" />
+    <Compile Include="Assets\Scripts\Map\LevelGeneration.cs" />
+    <Compile Include="Assets\Scripts\Monster\boss3_Skeleton\Skeleton.cs" />
+    <Compile Include="Assets\Scripts\Monster\BossMonster.cs" />
+    <Compile Include="Assets\Scripts\UI\SceneLoader.cs" />
+    <Compile Include="Assets\Scripts\Monster\boss3_Skeleton\SkeletonController.cs" />
+    <Compile Include="Assets\Scripts\Item\ItemManager.cs" />
+    <Compile Include="Assets\Scripts\AchievementManager.cs" />
+    <Compile Include="Assets\Scripts\Map\Door.cs" />
+    <Compile Include="Assets\Scripts\Map\ColorToGameObject.cs" />
+    <Compile Include="Assets\Scripts\Monster\MonsterShooter.cs" />
+    <Compile Include="Assets\Scripts\Item\ItemStat.cs" />
+    <Compile Include="Assets\Scripts\Monster\RangedMonster.cs" />
+    <Compile Include="Assets\Scripts\BaseStat.cs" />
+    <Compile Include="Assets\Scripts\Data\DataManager.cs" />
+    <Compile Include="Assets\Scripts\Player&amp;Bullet\Achevements\Achievement.cs" />
+    <Compile Include="Assets\Scripts\Monster\DebuffMonster.cs" />
+    <Compile Include="Assets\Scripts\UI\GameResultUI.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\PoolManager.cs" />
-    <Compile Include="Assets\Scripts\MeleeATKwithNavmesh.cs" />
-    <Compile Include="Assets\Scripts\Weapon.cs" />
-    <Compile Include="Assets\Scripts\Player_head.cs" />
+    <Compile Include="Assets\Scripts\Monster\boss1_Snake\SnakePartController.cs" />
+    <Compile Include="Assets\Scripts\Monster\MonsterController.cs" />
+    <Compile Include="Assets\Scripts\Monster\MonsterBullet.cs" />
+    <Compile Include="Assets\Scripts\Player&amp;Bullet\Weapon.cs" />
+    <Compile Include="Assets\Scripts\Item\PoolManager.cs" />
+    <Compile Include="Assets\Scripts\Data\Data_Contents.cs" />
+    <Compile Include="Assets\Scripts\Map\Room.cs" />
+    <Compile Include="Assets\Scripts\Monster\boss1_Snake\Snake.cs" />
+    <Compile Include="Assets\Scripts\UI\PlayerStatUI.cs" />
+    <Compile Include="Assets\Scripts\Map\RoomInstance.cs" />
+    <Compile Include="Assets\Scripts\Monster\MonsterManager.cs" />
+    <Compile Include="Assets\Scripts\Monster\MeleeMonster.cs" />
+    <Compile Include="Assets\Scripts\Monster\RangedMonsterFactory.cs" />
+    <Compile Include="Assets\Scripts\UI\NewBehaviourScript.cs" />
+    <Compile Include="Assets\Scripts\Monster\boss1_Snake\SnakeController.cs" />
+    <Compile Include="Assets\Scripts\Monster\boss1_Snake\SnakeBodyController.cs" />
+    <Compile Include="Assets\Scripts\Monster\MeleeMonsterFactory.cs" />
+    <Compile Include="Assets\Scripts\Item\PassiveItem.cs" />
+    <Compile Include="Assets\Scripts\Monster\DebuffMonsterFactory.cs" />
+    <Compile Include="Assets\Scripts\Monster\MonsterCollisionManager.cs" />
+    <Compile Include="Assets\Scripts\UI\PauseUI.cs" />
+    <Compile Include="Assets\Scripts\Monster\boss2_Assemble\AssembleController.cs" />
+    <Compile Include="Assets\Scripts\Player&amp;Bullet\PlayerHead.cs" />
+    <Compile Include="Assets\Scripts\Monster\MonsterStat.cs" />
+    <Compile Include="Assets\Scripts\Monster\FadeAnim.cs" />
+    <Compile Include="Assets\Scripts\Monster\boss1_Snake\SnakeHeadController.cs" />
+    <Compile Include="Assets\Scripts\Monster\Monster.cs" />
+    <Compile Include="Assets\Scripts\Item\ObjectPool.cs" />
+    <Compile Include="Assets\Scripts\Monster\MonsterState.cs" />
+    <Compile Include="Assets\Scripts\Map\MapSpriteSelector.cs" />
+    <Compile Include="Assets\Scripts\UI\Inventory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\ShootingSound\ReadMe.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Fonts\neodgm - OFL.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -1099,11 +1181,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="NavMeshPlus.csproj">
-      <Project>{E7D1B1E5-9FC1-3ACF-7EBB-E6935A5CA672}</Project>
+      <Project>{D9D15F42-0C1A-1619-BC8F-41D87CA3C7AD}</Project>
       <Name>NavMeshPlus</Name>
     </ProjectReference>
     <ProjectReference Include="NavMeshPlusEditor.csproj">
-      <Project>{2E2C1E45-369B-CFDF-BFC8-3339B7EC9508}</Project>
+      <Project>{E7607AD7-B598-5272-558E-5B9237D22DB4}</Project>
       <Name>NavMeshPlusEditor</Name>
     </ProjectReference>
   </ItemGroup>
