@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -28,6 +28,10 @@ public class RoomInstance : MonoBehaviour
     public GameObject stageTargetPrefab; // Stage Target Prefab
     private GameObject stageTargetInstance; // 인스턴스 변수
 
+    public void Start()
+    {
+        Player.instance.transform.position = GetStartPositionInNextStage();
+    }
 
     public void Setup(Texture2D _tex = null, Vector2 _gridPos = default(Vector2), int _type = 0, bool _doorTop = false, bool _doorBot = false, bool _doorLeft = false, bool _doorRight = false, int _nextToBossRoom = 0)
     {
@@ -221,12 +225,31 @@ public class RoomInstance : MonoBehaviour
 
     private IEnumerator LoadStageCoroutine()
     {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextStage);
-        while (!asyncLoad.isDone)
+        if (nextStage == "GameResult")
         {
-            yield return null;
+            GameManager gameManager = FindObjectOfType<GameManager>();
+            gameManager.GameVictory();
         }
-        Player.instance.transform.position = GetStartPositionInNextStage();
+        else
+        {
+            GameObject player1 = GameObject.Find("Player");
+            if (player1 != null)
+            {
+                if (nextStage == "Play_Stage2")
+                {
+                    player1.GetComponent<PlayerStat>().SetPlayerStage(2);
+                }
+                else if (nextStage == "Play_Stage3")
+                {
+                    player1.GetComponent<PlayerStat>().SetPlayerStage(3);
+                }
+            }
+            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextStage);
+            while (!asyncLoad.isDone)
+            {
+                yield return null;
+            }
+        }
     }
 
     private Vector3 GetStartPositionInNextStage()
